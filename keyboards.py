@@ -1,40 +1,76 @@
-from aiogram.types import (
+from telebot.types import (
     ReplyKeyboardMarkup, ReplyKeyboardRemove, KeyboardButton,
-    InlineKeyboardMarkup, InlineKeyboardButton
+    InlineKeyboardButton, InlineKeyboardMarkup
 )
 
-    # Keyboard for administrations
-kb_admin = InlineKeyboardMarkup(
-    inline_keyboard=[
+kb_start_ing = InlineKeyboardMarkup(
+    keyboard=[
         [
-            InlineKeyboardButton(text="Просмотр заявок", callback_data="app_show")
+            InlineKeyboardButton("Подать заявку😎", callback_data="ing_yes")
         ],
         [
-            InlineKeyboardButton(text="Изменить график занятий", callback_data="app_calendar")
+            InlineKeyboardButton("Отказаться😡", callback_data="ing_no")
         ]
     ]
 )
 
-    # Keyboard for participiant
-kb_parts = InlineKeyboardMarkup(
-    inline_keyboard=[
+
+
+kb_back = InlineKeyboardMarkup(
+    keyboard=[
         [
-            InlineKeyboardButton(text="Мероприятия", callback_data="event")
-        ],
-        [
-            InlineKeyboardButton(text="График занятий", callback_data="show_calendar")
+            InlineKeyboardButton("Вернуться в главное меню🖥", callback_data="back")
         ]
     ]
 )
 
-    # Keyboard for applications
-kb_app = InlineKeyboardMarkup(
-    inline_keyboard=[
+
+kb_participiant = InlineKeyboardMarkup(
+    keyboard=[
         [
-            InlineKeyboardButton(text="Подать заявку", callback_data="add_app")
+            InlineKeyboardButton("Мои выступления🧙🏻‍♂️", callback_data="my_show"),
+            InlineKeyboardButton("График занятий🌄", callback_data="show_calendar")
         ],
         [
-            InlineKeyboardButton(text="Я не хочу", callback_data="no_app")
+            InlineKeyboardButton("Написать администраторам✉️", callback_data="send_letter_admin"),
+            InlineKeyboardButton("Заказать справку📨", callback_data="order_sertificate")
+        ],
+        [
+            InlineKeyboardButton("Поделиться❤️", switch_inline_query="- перейдите по ссылке")
+        ]
+    ]
+)
+
+
+kb_administator = InlineKeyboardMarkup(
+    keyboard=[
+        [
+            InlineKeyboardButton("Выступления🏟", callback_data="speech"),
+            InlineKeyboardButton("График занятий🌄", callback_data="calendar")
+        ],
+        [
+            InlineKeyboardButton("Почта✉️", callback_data="mail")
+        ],
+        [
+            InlineKeyboardButton("Поделиться❤️", switch_inline_query="- перейдите по ссылке")
+        ]
+    ]
+)
+
+kb_administator_speech = InlineKeyboardMarkup(
+    keyboard=[
+        [
+            InlineKeyboardButton("Мои выступления🏟", callback_data="my_show"),
+            InlineKeyboardButton("Назначить выступления🛠", callback_data="set_show")
+        ]
+    ]
+)
+
+kb_administator_calendar = InlineKeyboardMarkup(
+    keyboard=[
+        [
+            InlineKeyboardButton("Календарь🌄", callback_data="show_calendar"),
+            InlineKeyboardButton("Изменить график🛠", callback_data="set_calendar")
         ]
     ]
 )
