@@ -3,6 +3,12 @@ from telebot.types import (
     InlineKeyboardButton, InlineKeyboardMarkup
 )
 
+kb_yes_reply = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    KeyboardButton("Да")
+)
+
+kb_remove = ReplyKeyboardRemove()
+
 kb_start_ing = InlineKeyboardMarkup(
     keyboard=[
         [
@@ -36,6 +42,10 @@ kb_participiant = InlineKeyboardMarkup(
             InlineKeyboardButton("Заказать справку📨", callback_data="order_sertificate")
         ],
         [
+            InlineKeyboardButton("Документация📄", callback_data="documente"),
+            InlineKeyboardButton("Ваш статус🫵🏻", callback_data="role")
+        ],
+        [
             InlineKeyboardButton("Поделиться❤️", switch_inline_query="- перейдите по ссылке")
         ]
     ]
@@ -49,7 +59,12 @@ kb_administator = InlineKeyboardMarkup(
             InlineKeyboardButton("График занятий🌄", callback_data="calendar")
         ],
         [
-            InlineKeyboardButton("Почта✉️", callback_data="mail")
+            InlineKeyboardButton("Почта✉️", callback_data="mail"),
+            InlineKeyboardButton("Документация📄", callback_data="documente")
+        ],
+        [
+            InlineKeyboardButton("Обновить данные💭", callback_data="update"),
+            InlineKeyboardButton("Ваш статус🫵🏻", callback_data="role")
         ],
         [
             InlineKeyboardButton("Поделиться❤️", switch_inline_query="- перейдите по ссылке")
