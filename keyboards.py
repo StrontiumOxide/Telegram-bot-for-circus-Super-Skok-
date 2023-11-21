@@ -7,6 +7,10 @@ kb_yes_reply = ReplyKeyboardMarkup(resize_keyboard=True).add(
     KeyboardButton("Да")
 )
 
+kb_back_reply = ReplyKeyboardMarkup(resize_keyboard=True).add(
+    KeyboardButton("Отмена❌")
+)
+
 kb_remove = ReplyKeyboardRemove()
 
 kb_start_ing = InlineKeyboardMarkup(
@@ -20,8 +24,6 @@ kb_start_ing = InlineKeyboardMarkup(
     ]
 )
 
-
-
 kb_back = InlineKeyboardMarkup(
     keyboard=[
         [
@@ -30,7 +32,6 @@ kb_back = InlineKeyboardMarkup(
     ]
 )
 
-
 kb_participiant = InlineKeyboardMarkup(
     keyboard=[
         [
@@ -38,7 +39,7 @@ kb_participiant = InlineKeyboardMarkup(
             InlineKeyboardButton("График занятий🌄", callback_data="show_calendar")
         ],
         [
-            InlineKeyboardButton("Написать администраторам✉️", callback_data="send_letter_admin"),
+            InlineKeyboardButton("Почта✉️", callback_data="send_letter_admin"),
             InlineKeyboardButton("Заказать справку📨", callback_data="order_sertificate")
         ],
         [
@@ -51,7 +52,6 @@ kb_participiant = InlineKeyboardMarkup(
     ]
 )
 
-
 kb_administator = InlineKeyboardMarkup(
     keyboard=[
         [
@@ -63,11 +63,11 @@ kb_administator = InlineKeyboardMarkup(
             InlineKeyboardButton("Документация📄", callback_data="documente")
         ],
         [
-            InlineKeyboardButton("Обновить данные💭", callback_data="update"),
+            InlineKeyboardButton("Данные💭", callback_data="data"),
             InlineKeyboardButton("Ваш статус🫵🏻", callback_data="role")
         ],
         [
-            InlineKeyboardButton("Поделиться❤️", switch_inline_query="- перейдите по ссылке")
+            InlineKeyboardButton("Поделиться❤️", switch_inline_query='- Телеграм бот цирка "Супер-Скок"🎪')
         ]
     ]
 )
@@ -76,7 +76,10 @@ kb_administator_speech = InlineKeyboardMarkup(
     keyboard=[
         [
             InlineKeyboardButton("Мои выступления🏟", callback_data="my_show"),
-            InlineKeyboardButton("Назначить выступления🛠", callback_data="set_show")
+            InlineKeyboardButton("Назначить выступления🛠", callback_data="set_show"),
+        ],
+        [
+            InlineKeyboardButton("Вернуться в главное меню🖥", callback_data="back")
         ]
     ]
 )
@@ -86,6 +89,24 @@ kb_administator_calendar = InlineKeyboardMarkup(
         [
             InlineKeyboardButton("Календарь🌄", callback_data="show_calendar"),
             InlineKeyboardButton("Изменить график🛠", callback_data="set_calendar")
+        ],
+        [
+            InlineKeyboardButton("Вернуться в главное меню🖥", callback_data="back")
+        ]
+    ]
+)
+
+kb_data = InlineKeyboardMarkup(
+    keyboard= [
+        [
+            InlineKeyboardButton("Статистика📈", callback_data="statistics")
+        ],
+        [
+            InlineKeyboardButton("Загрузить данные⬆️", callback_data="loading"),
+            InlineKeyboardButton("Скачать данные⬇️", callback_data="download")
+        ],
+        [
+            InlineKeyboardButton("Вернуться в главное меню🖥", callback_data="back")
         ]
     ]
 )

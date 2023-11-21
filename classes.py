@@ -26,7 +26,11 @@ class User:
                 f"Реальное имя: {self.name}\n" 
                 f"Реальная фамилия: {self.surname}\n" 
                 f"Статус: {self.status}\n"
-                f"Роль: {self.role}") 
+                f"Роль: {self.role}")
+
+    def __repr__(self) -> str:
+        return f"{self.name} {self.surname}" 
+
 
 class BlackList(User):
     pass

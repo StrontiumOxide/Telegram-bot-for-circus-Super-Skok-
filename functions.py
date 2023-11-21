@@ -1,8 +1,7 @@
 import variable as v
 import csv
 from pprint import pprint
-from classes import Application, Participant, Worker, Administrator, Creator
-from telebot.types import Message, CallbackQuery
+from classes import BlackList, Application, Participant, Worker, Administrator, Creator
 
     # Должностной сепаратор
 def starting_loads() -> None:
@@ -21,7 +20,7 @@ def starting_loads() -> None:
     v.list_participants = {}
     v.list_applications = {}
     
-    with open(file="files/list_user.csv", mode="r", encoding="utf-8-sig") as f:
+    with open(file="files/Список пользователей.csv", mode="r", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f, delimiter=";")
 
         for user in reader:
@@ -72,6 +71,15 @@ def starting_loads() -> None:
                     role=user["role"]
                 )
 
+    print(
+        f"Заявки: {v.list_applications}",
+        f"Участники: {v.list_participants}",
+        f"Администраторы: {v.list_administrators}",
+        f"Создатели: {v.list_creators}",
+        "",
+        sep="\n"
+    )
+
 
 def update_info(user_dict: dict) -> None:
     """
@@ -82,14 +90,14 @@ def update_info(user_dict: dict) -> None:
     """
 
     fields = ["user_id", "t_name", "t_surname", "name", "surname", "status", "role"]
-    with open(file="files/list_user.csv", mode="a", newline="", encoding="utf-8-sig") as f:
-        writer = csv.DictWriter(f, fields, delimiter=";")
+    with open(file="files/Список пользователей.csv", mode="a", newline="", encoding="utf-8-sig") as file:
+        writer = csv.DictWriter(file, fields, delimiter=";")
         writer.writerows([user_dict])
 
     starting_loads()
 
 
-def role(message: Message) -> str:
+def role(chat_id: str) -> str:
     """
     Дефиниция статуса.
 
@@ -97,21 +105,13 @@ def role(message: Message) -> str:
     о пользователе и возвращает его статус и роль.
     """
 
-    chat_id = str(message.chat.id)
-
     for list_post in [v.list_creators, v.list_administrators, v.list_participants]:
         for user in list_post.values():
-            if user.user_id == chat_id:
+            if user.user_id == str(chat_id):
                 return user.status, user.role
+
 
     # Должностной сепаратор запускается при первом запуске программы.
     # Для следующих обновлений, пользователей из классов руководства
     # должен нажать кнопку "Обновить данные"
 starting_loads()
-print(
-    v.list_applications,
-    v.list_participants,
-    v.list_administrators,
-    v.list_creators,
-    sep="\n"
-)
